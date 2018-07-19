@@ -1,1 +1,1 @@
-web: gunicorn scavengr-django-backend.wsgi
+web: gunicorn scavengr_django_backend.wsgi
