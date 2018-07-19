@@ -1,8 +1,9 @@
 from django.db import models
 
 class User(models.Model):
-    email = models.CharField(max_length=100, blank=False)
+    email = models.EmailField(max_length=100, blank=False)
     password = models.CharField(max_length=100, blank=False)
+    auth_token = models.CharField(max_length=100, default='test', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -13,4 +13,4 @@ class UsersView(viewsets.ViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializer(queryset, many=False)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'user': serializer.data}, status=status.HTTP_201_CREATED)

@@ -42,5 +42,6 @@ class UserEndpointsTesetCase(TestCase):
         response = self.client.post('/api/v1/users/', {'user': {'email': self.email3, 'password': self.password3}}, format='json')
 
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.json()['id'], 1)
-        self.assertEqual(response.json()['email'], self.email3)
+        self.assertEqual(response.json()['user']['id'], 1)
+        self.assertEqual(response.json()['user']['email'], self.email3)
+        self.assertEqual(response.json()['user']['auth_token'], 'test')
