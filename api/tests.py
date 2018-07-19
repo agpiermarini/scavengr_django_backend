@@ -36,12 +36,11 @@ class UserEndpointsTesetCase(TestCase):
 
         self.email3 = "user3@user.com"
         self.password3 = "encrypted_password3"
-        self.post_params = { 'user': { 'email': self.email3, 'password': self.password3 } }
+        self.post_params = {'user': {'email': self.email3, 'password': self.password3}}
 
     def test_user_create_endpoint(self):
-        response = self.client.post('/api/v1/users/', self.post_params, format='json')
-        user = response.json()['user']
+        response = self.client.post('/api/v1/users/', {'user': {'email': self.email3, 'password': self.password3}}, format='json')
 
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(user['email'], self.email3)
-        self.assertEqual(user['password'], self.password3)
+        self.assertEqual(response.json()['id'], 1)
+        self.assertEqual(response.json()['email'], self.email3)
