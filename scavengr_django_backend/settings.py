@@ -27,7 +27,7 @@ SECRET_KEY = 'f1whg=x0lt)be&cc!jr+e=-#$vw9e0q^^y5lk2(^i#epn56lxk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'scavengr_django_backend.urls'
@@ -133,3 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Directory for collect static
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
