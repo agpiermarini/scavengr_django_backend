@@ -43,3 +43,15 @@ class UserEndpointTestCase(TestCase):
         self.assertEqual(response.data['username'], self.username)
         self.assertEqual(response.data['email'], self.email)
         self.assertFalse('password' in response.data)
+
+    def test_user_create_endpoint_no_password(self):
+        data = {
+                 'username': self.username,
+                 'email': self.email,
+                 'password': ''
+               }
+
+        response = self.client.post('/api/v1/users/', data, format='json')
+
+        self.assertEqual(User.objects.count(), 0)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
