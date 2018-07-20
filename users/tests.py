@@ -148,3 +148,23 @@ class UserEndpointTestCase(TestCase):
 
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class UsersAuthenticateEndpointTestCase(TestCase):
+
+    def setUp(self):
+        self.username = "username"
+        self.email = "username@email.com"
+        self.password = "password"
+
+        self.user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
+
+    def test_user_authenticate_endpoint_valid_credentials(self):
+        response = self.client.post('/api/v1/users/authenticate/')
+        token = Token.objects.get(user=self.user)
+
+        self.assertEqual(response.data['token'], token.key)
+        self.assertTrue('token' in response.data)
+        self.assertFalse('id' in response.data)
+        self.assertFalse('username' in response.data)
+        self.assertFalse('email' in response.data)
+        self.assertFalse('password' in response.data)
