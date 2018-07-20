@@ -169,7 +169,7 @@ class UsersAuthenticateEndpointTestCase(TestCase):
 
         self.assertEqual(response.data['token'], token.key)
         self.assertTrue('token' in response.data)
-        self.assertFalse('id' in response.data)
-        self.assertFalse('username' in response.data)
-        self.assertFalse('email' in response.data)
+        self.assertTrue('id' in response.data)
+        self.assertTrue('username' in response.data)
+        self.assertTrue('email' in response.data)
         self.assertFalse('password' in response.data)
