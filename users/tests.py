@@ -2,6 +2,8 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
 
 class UserModelTestCase(TestCase):
 
@@ -43,6 +45,11 @@ class UserEndpointTestCase(TestCase):
         self.assertEqual(response.data['username'], self.username)
         self.assertEqual(response.data['email'], self.email)
         self.assertFalse('password' in response.data)
+
+
+        user = User.objects.last()
+        token = Token.objects.get(user=user)
+        self.assertEqual(response.data['token'], token.key)
 
     def test_user_create_endpoint_preexising_username(self):
         User.objects.create_user(username=self.username, email=self.email, password=self.password)
@@ -141,3 +148,28 @@ class UserEndpointTestCase(TestCase):
 
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class UsersAuthenticateEndpointTestCase(TestCase):
+
+    def setUp(self):
+        self.username = "username"
+        self.email = "username@email.com"
+        self.password = "password"
+
+        self.user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
+
+    def test_user_authenticate_endpoint_valid_credentials(self):
+        data = {
+                 'username': self.username,
+                 'password': self.password
+                }
+
+        response = self.client.post('/api/v1/users/authenticate/', data, format='json')
+        token = Token.objects.get(user=self.user)
+
+        self.assertEqual(response.data['token'], token.key)
+        self.assertTrue('token' in response.data)
+        self.assertFalse('id' in response.data)
+        self.assertFalse('username' in response.data)
+        self.assertFalse('email' in response.data)
+        self.assertFalse('password' in response.data)
