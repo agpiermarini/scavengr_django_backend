@@ -159,7 +159,12 @@ class UsersAuthenticateEndpointTestCase(TestCase):
         self.user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
 
     def test_user_authenticate_endpoint_valid_credentials(self):
-        response = self.client.post('/api/v1/users/authenticate/')
+        data = {
+                 'username': self.username,
+                 'password': self.password
+                }
+
+        response = self.client.post('/api/v1/users/authenticate/', data, format='json')
         token = Token.objects.get(user=self.user)
 
         self.assertEqual(response.data['token'], token.key)
