@@ -2,6 +2,8 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from users.serializers import UserSerializer
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
 
 class UserView(viewsets.ViewSet):
 
@@ -10,6 +12,8 @@ class UserView(viewsets.ViewSet):
         if serializer.is_valid():
             user = serializer.save()
             if user:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                json = serializer.data
+                json['token'] = Token.objects.create(user=user).key
+                return Response(json, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
