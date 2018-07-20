@@ -142,13 +142,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
-# Configure applicatino to use DRF token authentication
+# Configure application to use DRF token authentication
 
 REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': (
       'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-    'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     )
 }
