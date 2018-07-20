@@ -13,7 +13,7 @@ class UserView(viewsets.ViewSet):
             user = serializer.save()
             if user:
                 json = serializer.data
-                json['token'] = Token.objects.create(user=user).key
+                json['token'] = Token.objects.get(user=user).key
                 return Response(json, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
