@@ -9,7 +9,6 @@ from rest_framework.permissions import AllowAny
 class UserView(viewsets.ViewSet):
     permission_classes = (AllowAny,)
 
-
     def create(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
