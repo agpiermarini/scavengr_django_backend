@@ -3,8 +3,8 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
-    email    = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=User.objects.all())])
+    username = serializers.CharField(max_length=25, validators=[UniqueValidator(queryset=User.objects.all())])
+    email    = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
     password = serializers.CharField(min_length=8, write_only=True)
 
     def create(self, validated_data):
