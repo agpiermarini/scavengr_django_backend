@@ -55,3 +55,15 @@ class UserEndpointTestCase(TestCase):
 
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_user_create_endpoint_password_shorter_than_8_chars(self):
+        data = {
+                 'username': self.username,
+                 'email': self.email,
+                 'password': '2short'
+               }
+
+        response = self.client.post('/api/v1/users/', data, format='json')
+
+        self.assertEqual(User.objects.count(), 0)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
