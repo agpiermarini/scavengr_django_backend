@@ -44,6 +44,11 @@ class UserEndpointTestCase(TestCase):
         self.assertEqual(response.data['email'], self.email)
         self.assertFalse('password' in response.data)
 
+
+        user = User.objects.last()
+        token = Token.objects.get(user=user)
+        self.assertEqual(response.data['token'], token.key)
+
     def test_user_create_endpoint_preexising_username(self):
         User.objects.create_user(username=self.username, email=self.email, password=self.password)
         data = {
