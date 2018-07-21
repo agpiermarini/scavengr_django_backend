@@ -52,7 +52,7 @@ class ScavengerHuntEndpointTestCase(TestCase):
 
         self.assertEqual(response.status_code, 400)
 
-    def test_scavenger_hunt_update_endpoint(self):
+    def test_scavenger_hunt_update_endpoint_put_request(self):
         scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
 
         data = {
@@ -62,8 +62,6 @@ class ScavengerHuntEndpointTestCase(TestCase):
 
         response = self.client.put('/api/v1/scavenger_hunts/1', data, format='json')
 
-        print(response.data)
-
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.data['id'], 1)
         self.assertEqual(response.data['name'], self.name)
@@ -71,7 +69,7 @@ class ScavengerHuntEndpointTestCase(TestCase):
         self.assertEqual(response.data['user_id'], self.user.id)
         self.assertEqual(response.data['username'], self.user.username)
 
-    def test_scavenger_hunt_update_endpoint_no_name(self):
+    def test_scavenger_hunt_update_endpoint_put_request_no_name(self):
         scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
 
         data = {
@@ -83,7 +81,7 @@ class ScavengerHuntEndpointTestCase(TestCase):
 
         self.assertEqual(response.status_code, 400)
 
-    def test_scavenger_hunt_update_endpoint_no_description(self):
+    def test_scavenger_hunt_update_endpoint_put_request_no_description(self):
         scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
 
         data = {
@@ -95,12 +93,63 @@ class ScavengerHuntEndpointTestCase(TestCase):
 
         self.assertEqual(response.status_code, 400)
 
-    def test_scavenger_hunt_update_endpoint_no_corresponding_record(self):
+    def test_scavenger_hunt_update_endpoint_put_request_no_corresponding_record(self):
         data = {
                 'name': self.name,
                 'description': self.description
                 }
 
         response = self.client.put('/api/v1/scavenger_hunts/1', data, format='json')
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_scavenger_hunt_update_endpoint_patch_request(self):
+        scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
+
+        data = {
+                'name': self.name,
+                'description': self.description
+                }
+
+        response = self.client.patch('/api/v1/scavenger_hunts/1', data, format='json')
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.data['id'], 1)
+        self.assertEqual(response.data['name'], self.name)
+        self.assertEqual(response.data['description'], self.description)
+        self.assertEqual(response.data['user_id'], self.user.id)
+        self.assertEqual(response.data['username'], self.user.username)
+
+    def test_scavenger_hunt_update_endpoint_patch_request_no_name(self):
+        scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
+
+        data = {
+                'name': "",
+                'description': self.description
+                }
+
+        response = self.client.patch('/api/v1/scavenger_hunts/1', data, format='json')
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_scavenger_hunt_update_endpoint_patch_request_no_description(self):
+        scavenger_hunt = ScavengerHunt.objects.create(id=1, name="old_name", description="old_description", user_id=self.user.id)
+
+        data = {
+                'name': self.name,
+                'description': ""
+                }
+
+        response = self.client.patch('/api/v1/scavenger_hunts/1', data, format='json')
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_scavenger_hunt_update_endpoint_patch_request_no_corresponding_record(self):
+        data = {
+                'name': self.name,
+                'description': self.description
+                }
+
+        response = self.client.patch('/api/v1/scavenger_hunts/1', data, format='json')
 
         self.assertEqual(response.status_code, 404)
