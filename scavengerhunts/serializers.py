@@ -10,6 +10,12 @@ class ScavengerHuntSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return ScavengerHunt.objects.create(**validated_data)
 
+    def update(self, instance, validated_data):
+        instance.name = validated_data['name']
+        instance.description = validated_data['description']
+        instance.save()
+        return instance
+
     class Meta:
         model = ScavengerHunt
         fields = ('id', 'name', 'description', 'user_id', 'username')
