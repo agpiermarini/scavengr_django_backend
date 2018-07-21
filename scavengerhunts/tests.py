@@ -169,3 +169,21 @@ class ScavengerHuntEndpointTestCase(TestCase):
         response = self.client.get('/api/v1/scavenger_hunts/1')
 
         self.assertEqual(response.status_code, 404)
+
+    def test_scavenger_hunt_show_endpoint(self):
+        scavenger_hunt1 = ScavengerHunt.objects.create(id=1, name=self.name, description=self.description, user_id=self.user.id)
+        scavenger_hunt1 = ScavengerHunt.objects.create(id=2, name="second_hunt", description="second_description", user_id=self.user.id)
+        response = self.client.get('/api/v1/scavenger_hunts/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 2)
+        self.assertEqual(response.json()[0]['id'], 1)
+        self.assertEqual(response.json()[0]['name'], self.name)
+        self.assertEqual(response.json()[0]['description'], self.description)
+        self.assertEqual(response.json()[0]['user_id'], self.user.id)
+        self.assertEqual(response.json()[0]['username'], self.user.username)
+        self.assertEqual(response.json()[1]['id'], 2)
+        self.assertEqual(response.json()[1]['name'], "second_hunt")
+        self.assertEqual(response.json()[1]['description'], "second_description")
+        self.assertEqual(response.json()[1]['user_id'], self.user.id)
+        self.assertEqual(response.json()[1]['username'], self.user.username)

@@ -7,6 +7,11 @@ from django.shortcuts import get_object_or_404
 
 class ScavengerHuntView(viewsets.ViewSet):
 
+    def index(self, request):
+        queryset = ScavengerHunt.objects.all()
+        serializer = ScavengerHuntSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def show(self, request, id):
         scavenger_hunt = get_object_or_404(ScavengerHunt, pk=id)
         serializer = ScavengerHuntSerializer(scavenger_hunt, many=False)
