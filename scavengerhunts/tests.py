@@ -164,3 +164,8 @@ class ScavengerHuntEndpointTestCase(TestCase):
         self.assertEqual(response.data['description'], self.description)
         self.assertEqual(response.data['user_id'], self.user.id)
         self.assertEqual(response.data['username'], self.user.username)
+
+    def test_scavenger_hunt_show_endpoint_no_corresponding_record(self):
+        response = self.client.get('/api/v1/scavenger_hunts/1')
+
+        self.assertEqual(response.status_code, 404)
