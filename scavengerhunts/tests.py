@@ -25,8 +25,6 @@ class ScavengerHuntEndpointTestCase(TestCase):
 
         response = self.client.post('/api/v1/scavenger_hunts/', data, format='json')
 
-        print(response.data)
-
         self.assertEqual(response.data['name'], self.name)
         self.assertEqual(response.data['description'], self.description)
         self.assertEqual(response.data['user_id'], self.user.id)
