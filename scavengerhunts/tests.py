@@ -187,3 +187,19 @@ class ScavengerHuntEndpointTestCase(TestCase):
         self.assertEqual(response.json()[1]['description'], "second_description")
         self.assertEqual(response.json()[1]['user_id'], self.user.id)
         self.assertEqual(response.json()[1]['username'], self.user.username)
+
+    def test_scavenger_hunt_delete_endpoint(self):
+        scavenger_hunt1 = ScavengerHunt.objects.create(id=1, name=self.name, description=self.description, user_id=self.user.id)
+        scavenger_hunt2 = ScavengerHunt.objects.create(id=2, name=self.name, description=self.description, user_id=self.user.id)
+
+        self.assertEqual(len(ScavengerHunt.objects.all()), 2)
+
+        response = self.client.delete('/api/v1/scavenger_hunts/1')
+
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(len(ScavengerHunt.objects.all()), 1)
+
+    def test_scavenger_hunt_show_endpoint_no_corresponding_record(self):
+        response = self.client.delete('/api/v1/scavenger_hunts/3')
+
+        self.assertEqual(response.status_code, 404)
