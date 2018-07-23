@@ -7,7 +7,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import AllowAny
 
 
-class UserView(viewsets.ViewSet):
+class UserCreateView(viewsets.ViewSet):
     permission_classes = (AllowAny,)
 
     def create(self, request):
