@@ -5,7 +5,7 @@ from .views import UserCreateView, UserScavengerHuntView, CustomAuthToken
 
 urlpatterns = [
     path('', UserCreateView.as_view({'post': 'create'})),
-    path('<id>/scavenger_hunts/', UserScavengerHuntView.as_view({'get': 'index'})),
+    path('<username>/scavenger_hunts/', UserScavengerHuntView.as_view({'get': 'index'})),
     path('authenticate/', CustomAuthToken.as_view()),
 ]
 
