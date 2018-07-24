@@ -1,12 +1,12 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from users.serializers import UserSerializer
+from scavengerhunts.models import ScavengerHunt
 from scavengerhunts.serializers import ScavengerHuntSerializer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import AllowAny
-
 
 class UserCreateView(viewsets.ViewSet):
     permission_classes = (AllowAny,)
@@ -24,8 +24,8 @@ class UserCreateView(viewsets.ViewSet):
 
 class UserScavengerHuntView(viewsets.ViewSet):
 
-    def index(self, request, id):
-        queryset = request.user.scavengerhunt_set.all()
+    def index(self, request, username):
+        queryset = User.objects.get(username=username).scavengerhunt_set.all()
         serializer = ScavengerHuntSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
