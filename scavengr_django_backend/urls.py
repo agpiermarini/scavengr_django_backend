@@ -20,4 +20,5 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^api/v1/users/', include('users.urls')),
     re_path(r'^api/v1/scavenger_hunts/', include('scavengerhunts.urls')),
+    re_path(r'^api/v1/current_scavenger_hunts/', include('currentscavengerhunts.urls')),
 ]
