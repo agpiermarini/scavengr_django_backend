@@ -55,7 +55,11 @@ class CurrentScavengerHuntEndpointTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.data), 2)
-        self.assertEqual(response.data[0]["scavenger_hunt_id"], 1)
+        self.assertEqual(response.data[0]["scavenger_hunt_id"], self.scavenger_hunt_1.id)
         self.assertEqual(response.data[0]["user_id"], 1)
-        self.assertEqual(response.data[1]["scavenger_hunt_id"], 2)
+        self.assertEqual(response.data[0]["scavenger_hunt_name"], self.scavenger_hunt_1.name)
+        self.assertEqual(response.data[0]["scavenger_hunt_description"], self.scavenger_hunt_1.description)
+        self.assertEqual(response.data[1]["scavenger_hunt_id"], self.scavenger_hunt_2.id)
         self.assertEqual(response.data[1]["user_id"], 1)
+        self.assertEqual(response.data[1]["scavenger_hunt_name"], self.scavenger_hunt_2.name)
+        self.assertEqual(response.data[1]["scavenger_hunt_description"], self.scavenger_hunt_2.description)
