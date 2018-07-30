@@ -1,7 +1,8 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
-from scavengerhunts.models import ScavengerHunt, CurrentScavengerHunt
+from scavengerhunts.models import ScavengerHunt
+from currentscavengerhunts.models  import CurrentScavengerHunt
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
