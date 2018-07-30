@@ -303,3 +303,60 @@ Response code
 ```
 204
 ```
+
+#### CurrentScavengerHunt Endpoints
+
+**POST /api/v1/current_scavenger_hunts/**  
+Creates a joins record for current user and a scavenger hunt that they have started
+
+Request URL
+```
+/api/v1/current_scavenger_hunts/
+```
+
+Required parameters
+```
+{
+  "scavenger_hunt_id": 1
+}
+```
+
+Response Body
+```
+None
+```
+
+Response code
+```
+200
+```
+
+**GET /api/v1/current_scavenger_hunts/**  
+Returns all current scavenger hunts associated with current user
+
+Request URL
+```
+/api/v1/current_scavenger_hunts/
+```
+
+Response Body
+```
+[
+  {
+    "scavenger_hunt_id": 1,
+    "user_id": 1,
+    "created_at":
+  },
+  {
+    "scavenger_hunt_id": 2,
+    "user_id": 1,
+    "created_at":
+  },
+  {...}
+]
+```
+
+Response code
+```
+200
+```
