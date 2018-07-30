@@ -10,7 +10,7 @@ class CurrentScavengerHunt(models.Model):
     created_at      = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f'Scavenger Hunt ID: {self.scavengerhunt.id}, User ID: {self.user.id}'
+        return f'Scavenger Hunt ID: {self.scavenger_hunt.id}, User ID: {self.user.id}'
 
     class Meta:
         ordering = ('-created_at',)
