@@ -20,14 +20,14 @@ $ pip install -r requirements.txt
 Next, run the following commands to initialize the database:
 
 ```
-$ python3.7 manage.py makemigrations
-$ python3.7 manage.py migrate
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
 ```
 
 Then spin up a server on port 3000:
 
 ```
-$ python3.7 manage.py runserver 3000
+$ python3 manage.py runserver 3000
 ```
 
 ___
@@ -39,13 +39,13 @@ This project uses Django's built-in test framework. Run tests using the standard
 
 
 #### Current Contributors
-[Evan Wheeler](https://github.com/anon0mys)
+[Evan Wheeler](https://github.com/anon0mys)  
 [Andrew Piermarini](http://www.github.com/agpiermarini)
 
 ### Versions
-Python 3.7
-Django 2.0
-Django Rest Framework
+Python 3.7  
+Django 2.0  
+Django Rest Framework  
 
 
 ### Token Authentication
@@ -68,7 +68,7 @@ Local Base URL:       http://localhost:3000
 
 #### Authentication Endpoint
 
-**POST /api/v1/authenticate/**
+**POST /api/v1/authenticate/**  
 Returns user record, which includes authentication token that should be passed in subsequent requests in an Authorization HTTP header
 
 Request URL
@@ -102,7 +102,7 @@ Status code
 
 #### User Endpoints
 
-**POST /api/v1/users/**
+**POST /api/v1/users/**  
 Creates a user record
 
 Request URL
@@ -134,7 +134,7 @@ Response Code
 201
 ```
 
-**GET /api/v1/users/:username/scavenger_hunts/**
+**GET /api/v1/users/:username/scavenger_hunts/**  
 Returns all scavenger hunt records for user corresponding to :username
 
 Request URL
@@ -171,7 +171,7 @@ Response code
 
 #### ScavengerHunt Endpoints
 
-**GET /api/v1/scavenger_hunts/**
+**GET /api/v1/scavenger_hunts/**  
 Returns all scavenger hunt records
 
 Request URL
@@ -205,7 +205,7 @@ Response code
 200
 ```
 
-**GET /api/v1/scavenger_hunts/:id**
+**GET /api/v1/scavenger_hunts/:id**  
 Returns scavenger hunt record corresponding to :id
 
 Request URL
@@ -227,7 +227,7 @@ Response code
 200
 ```
 
-**POST /api/v1/scavenger_hunts/**
+**POST /api/v1/scavenger_hunts/**  
 Creates a scavenger hunt record associated with authenticated user
 
 Request URL
@@ -259,7 +259,7 @@ Response code
 200
 ```
 
-**PUT/PATCH /api/v1/scavenger_hunts/:id**
+**PUT/PATCH /api/v1/scavenger_hunts/:id**  
 Updates scavenger hunt record corresponding to :id
 
 Request URL
@@ -291,7 +291,7 @@ Response code
 200
 ```
 
-**DELETE /api/v1/scavenger_hunts/:id**
+**DELETE /api/v1/scavenger_hunts/:id**  
 Deletes scavenger hunt record corresponding to :id
 
 Request URL
@@ -302,4 +302,61 @@ Request URL
 Response code
 ```
 204
+```
+
+#### CurrentScavengerHunt Endpoints
+
+**POST /api/v1/current_scavenger_hunts/**  
+Creates a joins record for current user and a scavenger hunt that they have started
+
+Request URL
+```
+/api/v1/current_scavenger_hunts/
+```
+
+Required parameters
+```
+{
+  "scavenger_hunt_id": 1
+}
+```
+
+Response Body
+```
+None
+```
+
+Response code
+```
+200
+```
+
+**GET /api/v1/current_scavenger_hunts/**  
+Returns all current scavenger hunts associated with current user
+
+Request URL
+```
+/api/v1/current_scavenger_hunts/
+```
+
+Response Body
+```
+[
+  {
+    "scavenger_hunt_id": 1,
+    "user_id": 1,
+    "created_at": '2018-07-30'
+  },
+  {
+    "scavenger_hunt_id": 2,
+    "user_id": 1,
+    "created_at": '2018-07-30'
+  },
+  {...}
+]
+```
+
+Response code
+```
+200
 ```
