@@ -19,6 +19,5 @@ class CurrentScavengerHuntView(viewsets.ViewSet):
 
     def index(self, request):
         queryset = request.user.currentscavengerhunt_set.all()
-        print(queryset)
         serializer = CurrentScavengerHuntSerializer(queryset, many=True)
         return Response(serializer.data, status.HTTP_200_OK)
