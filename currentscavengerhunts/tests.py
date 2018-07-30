@@ -20,12 +20,27 @@ class CurrentScavengerHuntEndpointTestCase(TestCase):
 
 
     def test_scavenger_hunt_create_endpoint(self):
+        old_count = len(CurrentScavengerHunt.objects.all())
+
         data = { 'scavenger_hunt_id': 1 }
 
         response = self.client.post('/api/v1/current_scavenger_hunts/', data, format='json')
 
-        self.assertEqual(response.status_code, 201)
+        new_count = len(CurrentScavengerHunt.objects.all())
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(old_count, new_count)
+        self.assertEqual(new_count, 1)
+
+    def test_scavenger_hunt_create_endpoint_no_corresponding_scavenger_hunt(self):
+        old_count = len(CurrentScavengerHunt.objects.all())
+
+        data = { 'scavenger_hunt_id': 2, 'random_field': 0 }
 
         response = self.client.post('/api/v1/current_scavenger_hunts/', data, format='json')
 
-        self.assertEqual(response.status_code, 200)
+        new_count = len(CurrentScavengerHunt.objects.all())
+
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(old_count, new_count)
+        self.assertEqual(new_count, 0)
