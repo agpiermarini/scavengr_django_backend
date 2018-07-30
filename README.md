@@ -345,12 +345,12 @@ Response Body
   {
     "scavenger_hunt_id": 1,
     "user_id": 1,
-    "created_at":
+    "created_at": '2018-07-30'
   },
   {
     "scavenger_hunt_id": 2,
     "user_id": 1,
-    "created_at":
+    "created_at": '2018-07-30'
   },
   {...}
 ]
