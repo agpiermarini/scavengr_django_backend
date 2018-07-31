@@ -9,10 +9,10 @@ class CurrentScavengerHunt(models.Model):
     user            = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at      = models.DateField(auto_now_add=True)
 
-    def scavenger_hunt_name(self):
+    def name(self):
         return self.scavenger_hunt.name
 
-    def scavenger_hunt_description(self):
+    def description(self):
         return self.scavenger_hunt.description
 
     def __str__(self):
