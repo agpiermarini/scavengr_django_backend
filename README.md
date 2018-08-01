@@ -1,8 +1,25 @@
-# Scavengr Backend API (Django)
+# Scavengr - Django Backend
+
+### Table Of Contents
+- [Overview](#overview)
+- [Versions/Prerequisites](#versions-prerequisites)
+- [Setup](#setup)
+- [Authentication](#tokenauthentication)
+- [Endpoints](#endpoints)
+- [Contributions](#contributions)
+- [Authors](#authors)
+
+### Overview
+
 This API serves as the backend to the [Scavengr](https://scavengr-rails.herokuapp.com/) application.
 
 Local setup instructions and information regarding each of the available endpoints is below.
 
+### Versions/Prerequisites
+Python 3.7  
+Django 2.0  
+PostgreSQL  
+Django Rest Framework  
 ___
 ### Setup
 To run this application locally, first clone the repository:
@@ -31,21 +48,11 @@ $ python3 manage.py runserver 3000
 ```
 
 ___
-### Contribute
+### Contributions
 
 Fork the [repository](https://github.com/agpiermarini/scavengr_django_backend) if you would like to contribute to this project. Pull requests will be considered in kind, but please note that contributions must adhere to a test-driven, rebase workflow.
 
 This project uses Django's built-in test framework. Run tests using the standard `$ python3.7 manage.py test` command.
-
-
-#### Current Contributors
-[Evan Wheeler](https://github.com/anon0mys)  
-[Andrew Piermarini](http://www.github.com/agpiermarini)
-
-### Versions
-Python 3.7  
-Django 2.0  
-Django Rest Framework  
 
 
 ### Token Authentication
@@ -360,3 +367,7 @@ Response code
 ```
 200
 ```
+
+#### Authors
+[Evan Wheeler](https://github.com/anon0mys)  
+[Andrew Piermarini](http://www.github.com/agpiermarini)
