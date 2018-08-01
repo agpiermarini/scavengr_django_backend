@@ -1,11 +1,11 @@
 # Scavengr Backend API (Django)
 This API serves as the backend to the [Scavengr](https://scavengr-rails.herokuapp.com/) application.
 
-Local setup instructions and information regarding each of the available endpoints are detailed below.
+Local setup instructions and information regarding each of the available endpoints is below.
 
 ___
 ### Setup
-To run this application locally, first clone the repository from the following location:
+To run this application locally, first clone the repository:
 
 ```
 $ git clone https://github.com/agpiermarini/scavengr_django_backend
@@ -17,14 +17,14 @@ Start a virtual environment at the root directory, then run the following comman
 $ pip install -r requirements.txt
 ```
 
-Next, run the following commands to initialize the database:
+Next, initialize the database:
 
 ```
 $ python3 manage.py makemigrations
 $ python3 manage.py migrate
 ```
 
-Then spin up a server on port 3000:
+Then, spin up a server on port 3000:
 
 ```
 $ python3 manage.py runserver 3000
@@ -56,7 +56,7 @@ All requests (with the exception of POST requests to `/api/v1/users/`) require a
 Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
 ```
 
-Instructions for retrieving a user's token are below.
+Instructions for retrieving a user's token are included in the endpoint details below.
 
 
 ___
@@ -228,7 +228,7 @@ Response code
 ```
 
 **POST /api/v1/scavenger_hunts/**  
-Creates a scavenger hunt record associated with authenticated user
+Creates a scavenger hunt record associated with the authenticated user
 
 Request URL
 ```
@@ -307,7 +307,7 @@ Response code
 #### CurrentScavengerHunt Endpoints
 
 **POST /api/v1/current_scavenger_hunts/**  
-Creates a joins record for current user and a scavenger hunt that they have started
+Creates a joins record for the authorized user and a scavenger hunt that they have started
 
 Request URL
 ```
@@ -332,7 +332,7 @@ Response code
 ```
 
 **GET /api/v1/current_scavenger_hunts/**  
-Returns all current scavenger hunts associated with current user
+Returns all current scavenger hunts associated with the authorized user
 
 Request URL
 ```
