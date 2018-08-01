@@ -4,16 +4,20 @@
 - [Overview](#overview)
 - [Versions/Prerequisites](#versions-prerequisites)
 - [Setup](#setup)
-- [Authentication](#tokenauthentication)
+- [Authentication](#authentication)
 - [Endpoints](#endpoints)
 - [Contributions](#contributions)
 - [Authors](#authors)
+
+___
 
 ### Overview
 
 This API serves as the backend to the [Scavengr](https://scavengr-rails.herokuapp.com/) application.
 
 Local setup instructions and information regarding each of the available endpoints is below.
+
+___
 
 ### Versions/Prerequisites
 Python 3.7  
@@ -48,14 +52,8 @@ $ python3 manage.py runserver 3000
 ```
 
 ___
-### Contributions
 
-Fork the [repository](https://github.com/agpiermarini/scavengr_django_backend) if you would like to contribute to this project. Pull requests will be considered in kind, but please note that contributions must adhere to a test-driven, rebase workflow.
-
-This project uses Django's built-in test framework. Run tests using the standard `$ python3.7 manage.py test` command.
-
-
-### Token Authentication
+### Authentication
 
 All requests (with the exception of POST requests to `/api/v1/users/`) require a user token to be passed in an Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings, as follows:
 
@@ -367,7 +365,14 @@ Response code
 ```
 200
 ```
+___
+### Contributions
 
+Fork the [repository](https://github.com/agpiermarini/scavengr_django_backend) if you would like to contribute to this project. Pull requests will be considered in kind, but please note that contributions must adhere to a test-driven, rebase workflow.
+
+This project uses Django's built-in test framework. Run tests using the standard `$ python3.7 manage.py test` command.
+
+___
 #### Authors
 [Evan Wheeler](https://github.com/anon0mys)  
 [Andrew Piermarini](http://www.github.com/agpiermarini)
