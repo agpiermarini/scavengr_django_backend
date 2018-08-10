@@ -63,3 +63,21 @@ class CurrentScavengerHuntEndpointTestCase(TestCase):
         self.assertEqual(response.data[1]["user_id"], 1)
         self.assertEqual(response.data[1]["name"], self.scavenger_hunt_2.name)
         self.assertEqual(response.data[1]["description"], self.scavenger_hunt_2.description)
+
+    def test_scavenger_hunt_delete_endpoint(self):
+        CurrentScavengerHunt.objects.create(scavenger_hunt_id=1, user_id=1)
+
+        old_count = len(CurrentScavengerHunt.objects.all())
+
+        response = self.client.delete('/api/v1/current_scavenger_hunts/1')
+
+        new_count = len(CurrentScavengerHunt.objects.all())
+
+        self.assertEqual(response.status_code, 204)
+        self.assertNotEqual(old_count, new_count)
+        self.assertEqual(new_count, 0)
+
+    def test_scavenger_hunt_delete_endpoint_no_corresponding_record(self):
+        response = self.client.delete('/api/v1/current_scavenger_hunts/2')
+
+        self.assertEqual(response.status_code, 404)
