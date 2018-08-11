@@ -4,7 +4,7 @@ from .views import CurrentScavengerHuntView
 
 urlpatterns = [
     path('', CurrentScavengerHuntView.as_view({'get': 'index', 'post': 'create'})),
-    path('<int:id>', CurrentScavengerHuntView.as_view({'delete': 'destroy'})),
+    path('<id>', CurrentScavengerHuntView.as_view({'delete': 'destroy'})),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
