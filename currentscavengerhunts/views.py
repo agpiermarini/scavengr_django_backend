@@ -23,5 +23,6 @@ class CurrentScavengerHuntView(viewsets.ViewSet):
         return Response(serializer.data, status.HTTP_200_OK)
 
     def destroy(self, request, id):
-        get_object_or_404(CurrentScavengerHunt, id=id).delete()
+        queryset = request.user.currentscavengerhunt_set.all()
+        get_object_or_404(queryset, id=id).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
