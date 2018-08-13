@@ -12,6 +12,10 @@ class CurrentScavengerHunt(models.Model):
     def name(self):
         return self.scavenger_hunt.name
 
+    def creator(self):
+        # print(self.scavenger_hunt.user)
+        return self.scavenger_hunt.user.username
+
     def description(self):
         return self.scavenger_hunt.description
 

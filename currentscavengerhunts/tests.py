@@ -59,10 +59,13 @@ class CurrentScavengerHuntEndpointTestCase(TestCase):
         self.assertEqual(response.data[0]["user_id"], 1)
         self.assertEqual(response.data[0]["name"], self.scavenger_hunt_1.name)
         self.assertEqual(response.data[0]["description"], self.scavenger_hunt_1.description)
+        self.assertEqual(response.data[0]["creator"], self.scavenger_hunt_1.user.username)
         self.assertEqual(response.data[1]["scavenger_hunt_id"], self.scavenger_hunt_2.id)
         self.assertEqual(response.data[1]["user_id"], 1)
         self.assertEqual(response.data[1]["name"], self.scavenger_hunt_2.name)
         self.assertEqual(response.data[1]["description"], self.scavenger_hunt_2.description)
+        self.assertEqual(response.data[1]["creator"], self.scavenger_hunt_2.user.username)
+
 
     def test_scavenger_hunt_delete_endpoint(self):
         CurrentScavengerHunt.objects.create(scavenger_hunt_id=2, user_id=1)

@@ -7,4 +7,4 @@ class CurrentScavengerHuntSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CurrentScavengerHunt
-        fields = ('scavenger_hunt_id', 'user_id', 'created_at', 'name', 'description')
+        fields = ('scavenger_hunt_id', 'user_id', 'created_at', 'name', 'description', 'creator')
